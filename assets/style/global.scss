@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: deserta;
+    src: url(../fonts/Deserta.otf);
+}
+
+@font-face {
+    font-family: latoReg;
+    src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: latoBold;
+    src: url(../fonts/Lato-Bold.ttf);
+}
+
+$highlight : #CF152D;
+$background : #111111;
+$background_darker : #0c0c0c;
+$grey : #D2D2D2;
+$white : #FFFFFF;
+
+$font_size : 10px;
+
+html {
+    font-size: $font_size;
+}

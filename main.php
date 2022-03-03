@@ -131,21 +131,18 @@ $infos = getquery($connect, $getInfo);
                 isDown = true;
                 startX = e.pageX - slider.offsetLeft;
                 scrollLeft = slider.scrollLeft;
-                console.log('1')
             });
         });
 
         document.querySelectorAll('.sliders').forEach(item => {
             item.addEventListener('mouseleave', (e) => {
                 isDown = false;
-                console.log('2')
             });
         });
 
         document.querySelectorAll('.sliders').forEach(item => {
             item.addEventListener('mouseup', (e) => {
                 isDown = false;
-                console.log('3')
             });
         });
 
@@ -154,11 +151,9 @@ $infos = getquery($connect, $getInfo);
                 if (!isDown) return;
                 e.preventDefault();
                 const x = e.pageX - slider.offsetLeft;
-                console.log(x);
-                const walk = (x - startX) * 3; //scroll-fast
+                const walk = (x - startX) * 1.8; // Vitesse du drag, plus le chiffre est haut, plus ca va vite. (5 = déja-vu)
                 item.scrollLeft = scrollLeft - walk;
                 console.log(walk);
-                console.log('4');
             });
         });
 

@@ -13,6 +13,7 @@ body {
     flex-direction: row;
     background-color: $background;
 
+    /* --------------------------------- PLAYER --------------------------------- */
     .player {
         width: 28%;
         height: 100%;
@@ -79,7 +80,7 @@ body {
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             height: 21px;
-            width: 21px;
+            width: 32px;
             border-radius: 50%;
             background: var(--highlight);
         }
@@ -87,7 +88,7 @@ body {
         input[type="range"]::-moz-range-thumb {
             -webkit-appearance: none;
             height: 21px;
-            width: 21px;
+            width: 32px;
             border-radius: 50%;
             background: var(--highlight);
         }
@@ -95,7 +96,7 @@ body {
         input[type="range"]::-ms-thumb {
             -webkit-appearance: none;
             height: 21px;
-            width: 21px;
+            width: 32px;
             border-radius: 50%;
             background: var(--highlight);
         }

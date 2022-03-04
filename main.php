@@ -56,7 +56,7 @@ $infos = getquery($connect, $getInfo);
         <nav>
             <h1>NOISE</h1>
             <div class="search">
-                <input type="text">
+                <input type="text" placeholder="Recherche...">
                 <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M28 28L21.6252 21.6138L28 28ZM25.1579 13.0789C25.1579 16.2825 23.8853 19.3548 21.6201 21.6201C19.3548 23.8853 16.2825 25.1579 13.0789 25.1579C9.87541 25.1579 6.80308 23.8853 4.53784 21.6201C2.2726 19.3548 1 16.2825 1 13.0789C1 9.87541 2.2726 6.80308 4.53784 4.53784C6.80308 2.2726 9.87541 1 13.0789 1C16.2825 1 19.3548 2.2726 21.6201 4.53784C23.8853 6.80308 25.1579 9.87541 25.1579 13.0789V13.0789Z" stroke="white" stroke-width="2" stroke-linecap="round" />
                 </svg>
@@ -69,20 +69,39 @@ $infos = getquery($connect, $getInfo);
                 <h2>Albums :</h2>
                 <div class="sliders sliders_album">
                     <?php
-                    // CLASS : ITEM pour les elements répétables.
                     foreach ($albums as $item) {
-                        echo ' <div class="item" id_artist="' . $item['id_artist'] . '" style="background-image:url(\'' . $item['cover'] . '\')">
+                        // On prend tout les albums un par un $item dans la liste des album $albums
+                        echo ' <div class="item item_album albumid' . $item['id'] . '" id_artist="' . $item['id_artist'] . '" album_id="' . $item['id'] . '" style="background-image:url(\'' . $item['cover'] . '\')">
                         <p>' . $item['album_name'] . '</p>
                     </div>';
+                        // Pour chaque $item dans $album on fait une query avec l'id ($item['id']) de l'album. 
+                        $querySongPerAlbum = 'SELECT song.id AS song_id, song_name, id_album, song.path AS song_path, album.id AS album_id, album_name, id_artist, cover FROM song 
+                        JOIN album on id_album = album.id
+                        WHERE id_album = ' . $item['id'];
+                        //On enregistre dans une variable nommé différement a chaque fois un tableau qui nous renvoi toutes les pistes de l'album choisi
+                        ${'test' . $item['id']} =  getArray($connect, $querySongPerAlbum);
+                    ?> <div class="songContainer songContainer<?= $item['id'] ?>">
+                            <?php
+                            // Pour chaque musique $item dans l'array qu'on vient de recupérer, on ecrit ce qu'on veut
+                            foreach (${'test' . $item['id']} as $item) {
+                                echo ' <div class="item_song songAlbum' . $item['id_album'] . '" id_album=' . $item['id_album'] . ' id_song=' . $item['song_id'] . ' song_path=' . $item['song_path'] . '>
+                            <img src=' . $item['cover'] . ' alt="cover" class="cover">
+                            <p>' . $item['song_name'] . '</p>
+                            <p class="display_id_song" > ' . $item['song_id'] . '</p>
+                        </div>';
+                            };
+                            ?> </div>
+                    <?php
+
                     }
                     ?>
                 </div>
+
 
                 <!-- SLIDERS 2 -->
                 <h2 class="artist_title">Artistes :</h2>
                 <div class="sliders sliders_artist">
                     <?php
-                    // CLASS : ITEM_ARTIST pour les elements répétables
                     foreach ($artists as $item) {
                         echo ' <div class="item_artist" id_artist="' . $item['id'] . '" style="background-image:url(\'' . $item['pic'] . '\')">
                         <p>' . $item['artistName'] . '</p>
@@ -94,82 +113,38 @@ $infos = getquery($connect, $getInfo);
 
         </div>
     </div>
-
-
     <script>
-        const rangeInputs = document.querySelectorAll('input[type="range"]')
+        const albums = document.querySelectorAll('.item_album');
+        console.log(albums.length);
 
-        function handleInputChange(e) {
-            let target = e.target
-            if (e.target.type !== 'range') {
-                target = document.getElementById('range')
-            }
-            const min = target.min
-            const max = target.max
-            const val = target.value
-            let current = (val - min) * 100 / (max - min);
-            console.log(current);
-            target.style.backgroundSize = current + '% 100%';
-        }
-
-        rangeInputs.forEach(input => {
-            input.addEventListener('input', handleInputChange)
-        })
-    </script>
-    <script>
-        /* -------------------------------------------------------------------------- */
-        /*                                SCRIPT SLIDER                               */
-        /* -------------------------------------------------------------------------- */
-        const slider = document.querySelector('.sliders'); // Classe du Sliders
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        //C'est comme avant mais avec des foreach pour que ca prene en compte tout les sliders de ta page, faut juste qu'ils aient tous la meme classe.
-        document.querySelectorAll('.sliders').forEach(item => {
-            item.addEventListener('mousedown', (e) => {
-                isDown = true;
-                startX = e.pageX - slider.offsetLeft;
-                scrollLeft = slider.scrollLeft;
+        function display(classAlbum, classContainer) {
+            let albums = document.querySelector(classAlbum);
+            let container = document.querySelector(classContainer);
+            let state = false;
+            albums.addEventListener('click', function() {
+                if (!state) {
+                    container.style.display = 'block';
+                    state = true;
+                    return state;
+                } else if (state) {
+                    container.style.display = 'none';
+                    state = false;
+                    return state;
+                };
             });
-        });
-
-        document.querySelectorAll('.sliders').forEach(item => {
-            item.addEventListener('mouseleave', (e) => {
-                isDown = false;
-            });
-        });
-
-        document.querySelectorAll('.sliders').forEach(item => {
-            item.addEventListener('mouseup', (e) => {
-                isDown = false;
-            });
-        });
-
-        document.querySelectorAll('.sliders').forEach(item => {
-            item.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 1.8; // Vitesse du drag, plus le chiffre est haut, plus ca va vite. (5 = déja-vu)
-                item.scrollLeft = scrollLeft - walk;
-                console.log(walk);
-            });
-        });
-
-        const mouseMoveHandler = function(e) {
-            // How far the mouse has been moved
-            const dx = e.clientX - pos.x;
-            const dy = e.clientY - pos.y;
-
-            // Scroll the element
-            ele.scrollTop = pos.top - dy;
-            ele.scrollLeft = pos.left - dx;
         };
-    </script>
-    
-    <script src="assets/script/Vibrant.js"></script>
 
+        for (i = 1; i <= albums.length; i++) {
+            display('.albumid' + i, '.songContainer' + i);
+        };
+
+
+        display('.albumid1', '.songContainer1');
+    </script>
+
+    <script src="assets/script/range.js"></script>
+    <script src="assets/Script/slider.js"></script>
+    <script src="assets/script/Vibrant.js"></script>
     <script src="assets/script/main.js"></script>
 </body>
 

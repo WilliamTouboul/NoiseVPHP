@@ -225,7 +225,6 @@ body {
                 gap: 2rem;
 
                 input {
-                    background: transparent;
                     color: $white;
                     border: 1px $white solid;
                     border-radius: 2rem;
@@ -292,7 +291,7 @@ body {
                             background: $background;
                             position: absolute;
                             top: 3.5rem;
-                            left: 0;
+                            left: -5px;
                             padding: 0.4em 0.8em;
                         }
                     }
@@ -315,7 +314,7 @@ body {
                             background: $background;
                             position: absolute;
                             top: 3.5rem;
-                            left: 0;
+                            left: -5px;
                             padding: 0.4em 0.8em;
                         }
                     }
@@ -323,5 +322,35 @@ body {
             }
         }
     }
+}
 
+.songContainer {
+    display: none;
+
+    .item_song {
+        height: 14rem;
+        width: 55rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .cover {
+            height: 12rem;
+            width: 12rem;
+            border-radius: 20px;
+        }
+
+        p {
+            font-family: latoReg;
+            font-size: 2rem;
+            color: $white;
+        }
+
+        .display_id_song {
+            opacity: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+    }
 }

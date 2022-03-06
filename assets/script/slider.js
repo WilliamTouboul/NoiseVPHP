@@ -11,18 +11,21 @@
              isDown = true;
              startX = e.pageX - slider.offsetLeft;
              scrollLeft = slider.scrollLeft;
+             item.style.cursor = "grabbing";
          });
      });
 
      document.querySelectorAll('.sliders').forEach(item => {
          item.addEventListener('mouseleave', (e) => {
              isDown = false;
+             item.style.cursor = "grab";
          });
      });
 
      document.querySelectorAll('.sliders').forEach(item => {
          item.addEventListener('mouseup', (e) => {
              isDown = false;
+             item.style.cursor = "grab";
          });
      });
 
@@ -33,6 +36,7 @@
              const x = e.pageX - slider.offsetLeft;
              const walk = (x - startX) * 1.8;
              item.scrollLeft = scrollLeft - walk;
+             item.style.cursor = "grab";
          });
      });
 
@@ -43,5 +47,3 @@
          ele.scrollTop = pos.top - dy;
          ele.scrollLeft = pos.left - dx;
      };
-
-     

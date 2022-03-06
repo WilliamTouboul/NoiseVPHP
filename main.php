@@ -11,7 +11,7 @@ $infos = getquery($connect, $getInfo);
     <!--                                 PLAYER                                  -->
     <!-- ----------------------------------------------------------------------- -->
     <div class="player">
-        <img src="<?= $infos['cover'] ?>" alt="" class="cover">
+        <img src="<?= $infos['cover'] ?>" alt="" class="cover" id="playerCover">
         <div class="infos">
             <p class="artist"><?= $infos['artistName'] ?></p>
             <p class="album"><?= $infos['album_name'] ?></p>
@@ -33,6 +33,11 @@ $infos = getquery($connect, $getInfo);
             <svg class="play" width="28" height="33" viewBox="0 0 28 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M27.1353 15.8408C27.6216 16.1307 27.6216 16.8693 27.1353 17.1592L1.57005 32.4002C1.11593 32.671 0.5 32.3492 0.5 31.7411V1.25894C0.5 0.650765 1.11593 0.329031 1.57005 0.599762L27.1353 15.8408Z" />
             </svg>
+            <svg class="pause" width="38" height="53" viewBox="0 0 38 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="-0.5" y="0.5" width="15" height="52" rx="2.5" transform="matrix(-1 0 0 1 15 0)" />
+                <rect x="-0.5" y="0.5" width="15" height="52" rx="2.5" transform="matrix(-1 0 0 1 37 0)" />
+            </svg>
+
             <!-- NEXT -->
             <svg class="next" width="22" height="19" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.3844 9.30846C16.5385 9.39563 16.5385 9.60437 16.3844 9.69154L0.862623 18.4667C0.687488 18.5657 0.5 18.4315 0.5 18.2752V0.724841C0.5 0.568469 0.687488 0.43429 0.862624 0.533303L16.3844 9.30846Z" />
@@ -62,11 +67,12 @@ $infos = getquery($connect, $getInfo);
                 </svg>
             </div>
         </nav>
+
         <!-- -------------------------------- menu --------------------------------- -->
         <div class="menu">
             <div class="top">
                 <!-- SLIDERS 1 -->
-                <h2>Albums :</h2>
+                <h2>Albums : </h2>
                 <div class="sliders sliders_album">
                     <?php
                     foreach ($albums as $item) {
@@ -75,8 +81,9 @@ $infos = getquery($connect, $getInfo);
                         <p>' . $item['album_name'] . '</p>
                     </div>';
                         // Pour chaque $item dans $album on fait une query avec l'id ($item['id']) de l'album. 
-                        $querySongPerAlbum = 'SELECT song.id AS song_id, song_name, id_album, song.path AS song_path, album.id AS album_id, album_name, id_artist, cover FROM song 
+                        $querySongPerAlbum = 'SELECT song.id AS song_id, song_name, id_album, song.path AS song_path, album.id AS album_id, album_name, id_artist, artist.name AS artist_name, cover FROM song 
                         JOIN album on id_album = album.id
+                        JOIN artist on album.id_artist = artist.id
                         WHERE id_album = ' . $item['id'];
                         //On enregistre dans une variable nommé différement a chaque fois un tableau qui nous renvoi toutes les pistes de l'album choisi
                         ${'test' . $item['id']} =  getArray($connect, $querySongPerAlbum);
@@ -84,7 +91,7 @@ $infos = getquery($connect, $getInfo);
                             <?php
                             // Pour chaque musique $item dans l'array qu'on vient de recupérer, on ecrit ce qu'on veut
                             foreach (${'test' . $item['id']} as $item) {
-                                echo ' <div class="item_song songAlbum' . $item['id_album'] . '" id_album=' . $item['id_album'] . ' id_song=' . $item['song_id'] . ' song_path=' . $item['song_path'] . '>
+                                echo ' <div class="item_song songAlbum' . $item['id_album'] . ' id_song_' . $item['song_id'] . '" id_album=' . $item['id_album'] . ' id_song=' . $item['song_id'] . ' song_path=' . $item['song_path'] . ' cover_path=' . $item['cover'] . ' album_name=' . $item['album_name'] . ' artist_name=' . $item['artist_name'] . ' song_name=' . $item['song_name'] . '>
                             <img src=' . $item['cover'] . ' alt="cover" class="cover">
                             <p>' . $item['song_name'] . '</p>
                             <p class="display_id_song" > ' . $item['song_id'] . '</p>
@@ -92,11 +99,9 @@ $infos = getquery($connect, $getInfo);
                             };
                             ?> </div>
                     <?php
-
                     }
                     ?>
                 </div>
-
 
                 <!-- SLIDERS 2 -->
                 <h2 class="artist_title">Artistes :</h2>
@@ -113,6 +118,53 @@ $infos = getquery($connect, $getInfo);
 
         </div>
     </div>
+
+
+    <audio id="audioPlayer" preload="metadata" controls>
+        <source src="assets/music/sounds/Advice/Advice.mp3" type="audio/mpeg">
+    </audio>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            function getExDuration() {
+                globalAudioDuration = audio.duration;
+                rounded = Math.round(audio.duration);
+                return rounded;
+            };
+
+            let exactDuration = getExDuration();
+            // ( ex:204 -> * 10 => 2040, ecart en ms );
+            for (i = 0; i = 100; i++) {
+
+            };
+            var i = 1; //  set your counter to 1
+            function myLoop() {
+                setTimeout(function() {
+                    console.log('hello' + i);
+                    $("#durationRange").val(i);
+                    i++;
+                    if (i < 100) {
+                        myLoop();
+                    }
+                }, exactDuration * 10)
+            }
+            
+            myLoop();
+
+            //Navigation dans la musique
+            $("#durationRange").mouseup(function(e) {
+                var leftOffset = e.pageX - $(this).offset().left;
+                var songPercents = leftOffset / $("#durationRange").width();
+                console.log(songPercents);
+                audio.currentTime = songPercents * audio.duration;
+                console.log(audio.currentTime);
+                return songPercents;
+            });
+        });
+    </script>
+
     <script>
         const albums = document.querySelectorAll('.item_album');
         console.log(albums.length);
@@ -137,6 +189,43 @@ $infos = getquery($connect, $getInfo);
         for (i = 1; i <= albums.length; i++) {
             display('.albumid' + i, '.songContainer' + i);
         };
+
+        /* -------------------------------------------------------------------------- */
+        /*                                    MUSIC                                   */
+        /* -------------------------------------------------------------------------- */
+        const playButton = document.querySelector('.play');
+        const audio = document.getElementById('audioPlayer');
+        const cover = document.querySelector('#playerCover');
+        const artist = document.querySelector('.artist');
+        const album = document.querySelector('.album');
+        const song = document.querySelector('.song');
+
+        document.querySelectorAll('.item_song').forEach(item => {
+            item.addEventListener('click', (e) => {
+                audio.src = item.getAttribute('song_path');
+                cover.src = item.getAttribute('cover_path');
+                artist.innerHTML = item.getAttribute('artist_name');
+                song.innerHTML = item.getAttribute('song_name');
+                album.innerHTML = item.getAttribute('album_name');
+
+                setTimeout(function() {
+                    vibrant();
+                }, 100);
+            });
+        });
+        musicIsPlaying = false;
+
+
+        playButton.addEventListener('click', () => {
+            if (musicIsPlaying) {
+                audio.pause();
+                musicIsPlaying = false;
+            } else {
+                audio.play();
+                musicIsPlaying = true;
+            }
+        });
+
 
 
         display('.albumid1', '.songContainer1');

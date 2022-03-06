@@ -124,24 +124,24 @@ body .player #durationRange {
 
 body .player input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 21px;
-  width: 32px;
+  height: 2.1rem;
+  width: 2.1rem;
   border-radius: 50%;
   background: var(--highlight);
 }
 
 body .player input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
-  height: 21px;
-  width: 32px;
+  height: 2.1rem;
+  width: 2.1rem;
   border-radius: 50%;
   background: var(--highlight);
 }
 
 body .player input[type="range"]::-ms-thumb {
   -webkit-appearance: none;
-  height: 21px;
-  width: 32px;
+  height: 2.1rem;
+  width: 2.1rem;
   border-radius: 50%;
   background: var(--highlight);
 }
@@ -225,7 +225,8 @@ body .player .commands {
   margin-bottom: 3rem;
 }
 
-body .player .commands .play {
+body .player .commands .play,
+body .player .commands .pause {
   height: 6rem;
   width: auto;
 }
@@ -296,8 +297,8 @@ body .main nav .search {
 }
 
 body .main nav .search input {
-  color: #FFFFFF;
-  border: 1px #FFFFFF solid;
+  color: white;
+  border: 1px white solid;
   border-radius: 2rem;
   height: 2.4rem;
   font-size: 1.6rem;
@@ -317,7 +318,7 @@ body .main .menu {
 body .main .menu .top h2 {
   font-family: deserta;
   font-size: 2.8rem;
-  color: #FFFFFF;
+  color: white;
 }
 
 body .main .menu .top .artist_title {
@@ -363,7 +364,7 @@ body .main .menu .top .sliders .item {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  border-radius: 4.5rem;
+  border-radius: 50%;
   background-size: cover;
   cursor: pointer !important;
   position: relative;
@@ -439,7 +440,7 @@ body .main .menu .top .sliders .item_artist p {
 .songContainer .item_song p {
   font-family: latoReg;
   font-size: 2rem;
-  color: #FFFFFF;
+  color: white;
 }
 
 .songContainer .item_song .display_id_song {
@@ -449,5 +450,40 @@ body .main .menu .top .sliders .item_artist p {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+#audioPlayer {
+  display: none;
+}
+
+.pause {
+  display: none;
+}
+
+.turning {
+  -webkit-animation: rotating 180s infinite;
+          animation: rotating 180s infinite;
+}
+
+@-webkit-keyframes rotating {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(36000deg);
+            transform: rotate(36000deg);
+  }
+}
+
+@keyframes rotating {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(36000deg);
+            transform: rotate(36000deg);
+  }
 }
 /*# sourceMappingURL=main.css.map */

@@ -63,7 +63,7 @@ body .container .anim span {
   bottom: 0;
   width: 9px;
   height: 0px;
-  background-color: #111111;
+  background-color: white;
   -webkit-animation: musicAnim 0.8s ease infinite alternate;
           animation: musicAnim 0.8s ease infinite alternate;
 }
@@ -151,13 +151,13 @@ body .container a {
   padding: 0.8em 1.6em;
   font-family: latoBold;
   text-decoration: none;
-  color: #111111;
+  color: white;
   margin-top: 2.5rem;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
 body .container a:hover {
-  color: #FFFFFF;
+  color: black;
 }
 /*# sourceMappingURL=index.css.map */

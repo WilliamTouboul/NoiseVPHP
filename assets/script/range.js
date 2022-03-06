@@ -9,7 +9,6 @@ function handleInputChange(e) {
     const max = target.max
     const val = target.value
     let current = (val - min) * 100 / (max - min);
-    console.log(current);
     target.style.backgroundSize = current + '% 100%';
 }
 

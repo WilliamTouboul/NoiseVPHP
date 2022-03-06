@@ -1,5 +1,4 @@
 let img = document.querySelector(".player .cover");
-let audio = document.getElementById('my-audio');
 
 window.addEventListener('load', vibrant());
 

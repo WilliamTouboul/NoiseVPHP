@@ -1,163 +1,136 @@
 * {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 @font-face {
-  font-family: deserta;
-  src: url(../fonts/Deserta.otf);
+    font-family: deserta;
+    src: url(../fonts/Deserta.otf);
 }
 
 @font-face {
-  font-family: latoReg;
-  src: url(../fonts/Lato-Regular.ttf);
+    font-family: latoReg;
+    src: url(../fonts/Lato-Regular.ttf);
 }
 
 @font-face {
-  font-family: latoBold;
-  src: url(../fonts/Lato-Bold.ttf);
+    font-family: latoBold;
+    src: url(../fonts/Lato-Bold.ttf);
+}
+
+:root {
+    --highlight: #cf152d;
+    --background: #111;
+    --background_darker: #0c0c0c;
+    --grey: #d2d2d2;
+    --white: #fff;
 }
 
 html {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  background-image: url("../images/backgroundIndex.png");
-  background-size: cover;
-  overflow: hidden;
-  position: relative;
-  display: -ms-grid;
-  display: grid;
-  place-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../images/backgroundIndex.png');
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    place-items: center;
 }
 
 body .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 body .container .anim {
-  width: 50px;
-  position: relative;
-  height: 50px;
+    width: 50px;
+    position: relative;
+    height: 50px;
 }
 
 body .container .anim span {
-  position: absolute;
-  bottom: 0;
-  width: 9px;
-  height: 0px;
-  background-color: white;
-  -webkit-animation: musicAnim 0.8s ease infinite alternate;
-          animation: musicAnim 0.8s ease infinite alternate;
+    position: absolute;
+    bottom: 0;
+    width: 9px;
+    height: 0px;
+    background-color: var(--background);
+    animation: musicAnim 0.8s ease infinite alternate;
 }
 
 body .container .anim span::first-child {
-  left: 0;
+    left: 0;
 }
 
 body .container .anim span:nth-child(2) {
-  left: 10px;
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s;
+    left: 10px;
+    animation-delay: 0.2s;
 }
 
 body .container .anim span:nth-child(3) {
-  left: 20px;
-  -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s;
+    left: 20px;
+    animation-delay: 0.4s;
 }
 
 body .container .anim span:nth-child(4) {
-  left: 30px;
-  -webkit-animation-delay: 0.6s;
-          animation-delay: 0.6s;
+    left: 30px;
+    animation-delay: 0.6s;
 }
 
 body .container .anim span:nth-child(5) {
-  left: 40px;
-  -webkit-animation-delay: 0.8s;
-          animation-delay: 0.8s;
-}
-
-@-webkit-keyframes musicAnim {
-  0% {
-    height: 5px;
-  }
-  30% {
-    height: 20px;
-    background-color: #CF152D;
-  }
-  60% {
-    height: 40px;
-    background-color: #CF152D;
-  }
-  80% {
-    height: 20px;
-    background-color: #CF152D;
-  }
-  100% {
-    height: 5px;
-  }
+    left: 40px;
+    animation-delay: 0.8s;
 }
 
 @keyframes musicAnim {
-  0% {
-    height: 5px;
-  }
-  30% {
-    height: 20px;
-    background-color: #CF152D;
-  }
-  60% {
-    height: 40px;
-    background-color: #CF152D;
-  }
-  80% {
-    height: 20px;
-    background-color: #CF152D;
-  }
-  100% {
-    height: 5px;
-  }
+    0% {
+        height: 5px;
+    }
+
+    30% {
+        height: 20px;
+        background-color: var(--highlight);
+    }
+
+    60% {
+        height: 40px;
+        background-color: var(--highlight);
+    }
+
+    80% {
+        height: 20px;
+        background-color: var(--highlight);
+    }
+
+    100% {
+        height: 5px;
+    }
 }
 
 body .container h1 {
-  font-size: 7.2rem;
-  font-family: deserta;
-  color: #CF152D;
-  margin-bottom: 2.5rem;
+    font-size: 7.2rem;
+    font-family: deserta;
+    color: var(--highlight);
+    margin-bottom: 2.5rem;
 }
 
 body .container a {
-  background: #CF152D;
-  font-size: 1.8rem;
-  padding: 0.8em 1.6em;
-  font-family: latoBold;
-  text-decoration: none;
-  color: white;
-  margin-top: 2.5rem;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+    background: var(--highlight);
+    font-size: 1.8rem;
+    padding: 0.8em 1.6em;
+    font-family: latoBold;
+    text-decoration: none;
+    color: var(--background);
+    margin-top: 2.5rem;
+    transition: all 0.2s ease-in-out;
 }
 
 body .container a:hover {
-  color: black;
+    color: var(--white);
 }
-/*# sourceMappingURL=index.css.map */

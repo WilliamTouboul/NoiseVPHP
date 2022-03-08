@@ -10,7 +10,7 @@
         if (basename($_SERVER['PHP_SELF']) == 'index.php') {
             $css = 'assets/style/index.css';
         } else if (basename($_SERVER['PHP_SELF']) == 'main.php') {
-            $css = 'assets/style/main.css';
+            $css = 'assets/style/style.css';
         }
         ?>
         <link rel="stylesheet" href=<?= $css ?>>

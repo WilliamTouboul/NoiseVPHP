@@ -30,14 +30,7 @@ $infos = getquery($connect, $getInfo);
                 <rect x="4.5" y="18.5" width="4" height="18" rx="1.5" transform="rotate(-180 4.5 18.5)" />
             </svg>
             <!-- PLAY -->
-            <svg class="play" width="28" height="33" viewBox="0 0 28 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M27.1353 15.8408C27.6216 16.1307 27.6216 16.8693 27.1353 17.1592L1.57005 32.4002C1.11593 32.671 0.5 32.3492 0.5 31.7411V1.25894C0.5 0.650765 1.11593 0.329031 1.57005 0.599762L27.1353 15.8408Z" />
-            </svg>
-            <svg class="pause" width="38" height="53" viewBox="0 0 38 53" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="-0.5" y="0.5" width="15" height="52" rx="2.5" transform="matrix(-1 0 0 1 15 0)" />
-                <rect x="-0.5" y="0.5" width="15" height="52" rx="2.5" transform="matrix(-1 0 0 1 37 0)" />
-            </svg>
-
+            <img src="assets/images/svg/Play.svg" alt="" class="play">
             <!-- NEXT -->
             <svg class="next" width="22" height="19" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.3844 9.30846C16.5385 9.39563 16.5385 9.60437 16.3844 9.69154L0.862623 18.4667C0.687488 18.5657 0.5 18.4315 0.5 18.2752V0.724841C0.5 0.568469 0.687488 0.43429 0.862624 0.533303L16.3844 9.30846Z" />
@@ -60,11 +53,27 @@ $infos = getquery($connect, $getInfo);
         <!-- --------------------------------- nav --------------------------------- -->
         <nav>
             <h1>NOISE</h1>
-            <div class="search">
-                <input type="text" placeholder="Recherche...">
-                <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M28 28L21.6252 21.6138L28 28ZM25.1579 13.0789C25.1579 16.2825 23.8853 19.3548 21.6201 21.6201C19.3548 23.8853 16.2825 25.1579 13.0789 25.1579C9.87541 25.1579 6.80308 23.8853 4.53784 21.6201C2.2726 19.3548 1 16.2825 1 13.0789C1 9.87541 2.2726 6.80308 4.53784 4.53784C6.80308 2.2726 9.87541 1 13.0789 1C16.2825 1 19.3548 2.2726 21.6201 4.53784C23.8853 6.80308 25.1579 9.87541 25.1579 13.0789V13.0789Z" stroke="white" stroke-width="2" stroke-linecap="round" />
+            <div class="navRight">
+
+                <div class="button r" id="button-9">
+                    <input type="checkbox" class="checkbox" id="dayNight" />
+                    <div class="knobs">
+                        <span></span>
+                    </div>
+                    <div class="layer"></div>
+                </div>
+
+                <div class="search">
+                    <input type="text" placeholder="Recherche...">
+                    <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M28 28L21.6252 21.6138L28 28ZM25.1579 13.0789C25.1579 16.2825 23.8853 19.3548 21.6201 21.6201C19.3548 23.8853 16.2825 25.1579 13.0789 25.1579C9.87541 25.1579 6.80308 23.8853 4.53784 21.6201C2.2726 19.3548 1 16.2825 1 13.0789C1 9.87541 2.2726 6.80308 4.53784 4.53784C6.80308 2.2726 9.87541 1 13.0789 1C16.2825 1 19.3548 2.2726 21.6201 4.53784C23.8853 6.80308 25.1579 9.87541 25.1579 13.0789V13.0789Z" stroke="white" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </div>
+
+                <svg class="param" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M17 10.645v-2.29c-1.17-.417-1.907-.533-2.28-1.431-.373-.9.07-1.512.6-2.625l-1.618-1.619c-1.105.525-1.723.974-2.626.6-.9-.373-1.017-1.116-1.431-2.28h-2.29c-.412 1.158-.53 1.907-1.431 2.28h-.001c-.9.374-1.51-.07-2.625-.6l-1.617 1.619c.527 1.11.973 1.724.6 2.625-.375.901-1.123 1.019-2.281 1.431v2.289c1.155.412 1.907.531 2.28 1.431.376.908-.081 1.534-.6 2.625l1.618 1.619c1.107-.525 1.724-.974 2.625-.6h.001c.9.373 1.018 1.118 1.431 2.28h2.289c.412-1.158.53-1.905 1.437-2.282h.001c.894-.372 1.501.071 2.619.602l1.618-1.619c-.525-1.107-.974-1.723-.601-2.625.374-.899 1.126-1.019 2.282-1.43zm-8.5 1.689c-1.564 0-2.833-1.269-2.833-2.834s1.269-2.834 2.833-2.834 2.833 1.269 2.833 2.834-1.269 2.834-2.833 2.834zm15.5 4.205v-1.077c-.55-.196-.897-.251-1.073-.673-.176-.424.033-.711.282-1.236l-.762-.762c-.52.248-.811.458-1.235.283-.424-.175-.479-.525-.674-1.073h-1.076c-.194.545-.25.897-.674 1.073-.424.176-.711-.033-1.235-.283l-.762.762c.248.523.458.812.282 1.236-.176.424-.528.479-1.073.673v1.077c.544.193.897.25 1.073.673.177.427-.038.722-.282 1.236l.762.762c.521-.248.812-.458 1.235-.283.424.175.479.526.674 1.073h1.076c.194-.545.25-.897.676-1.074h.001c.421-.175.706.034 1.232.284l.762-.762c-.247-.521-.458-.812-.282-1.235s.529-.481 1.073-.674zm-4 .794c-.736 0-1.333-.597-1.333-1.333s.597-1.333 1.333-1.333 1.333.597 1.333 1.333-.597 1.333-1.333 1.333zm-4 3.071v-.808c-.412-.147-.673-.188-.805-.505s.024-.533.212-.927l-.572-.571c-.389.186-.607.344-.926.212s-.359-.394-.506-.805h-.807c-.146.409-.188.673-.506.805-.317.132-.533-.024-.926-.212l-.572.571c.187.393.344.609.212.927-.132.318-.396.359-.805.505v.808c.408.145.673.188.805.505.133.32-.028.542-.212.927l.572.571c.39-.186.608-.344.926-.212.318.132.359.395.506.805h.807c.146-.409.188-.673.507-.805h.001c.315-.131.529.025.924.213l.572-.571c-.186-.391-.344-.609-.212-.927s.397-.361.805-.506zm-3 .596c-.552 0-1-.447-1-1s.448-1 1-1 1 .447 1 1-.448 1-1 1z" />
                 </svg>
+
             </div>
         </nav>
 
@@ -115,7 +124,6 @@ $infos = getquery($connect, $getInfo);
                     ?>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -123,116 +131,52 @@ $infos = getquery($connect, $getInfo);
     <audio id="audioPlayer" preload="metadata" controls>
         <source src="assets/music/sounds/Advice/Advice.mp3" type="audio/mpeg">
     </audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.2/dist/kute.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <script>
-        $(document).ready(function() {
+        let root = document.querySelector(':root'); // raccourci pour target
+        let actualMode = false; // booleen pour check le mode
 
-            function getExDuration() {
-                globalAudioDuration = audio.duration;
-                rounded = Math.round(audio.duration);
-                return rounded;
-            };
+        function goLight() {
+            root.style.setProperty('--background', '#ffffff'); // change bg
+            root.style.setProperty('--white', '#000000'); // change text
+            actualMode = true; // toggle booleen
+            localStorage.setItem('actualMode', actualMode); // ls.set le mode
+            document.getElementById('dayNight').checked = true;
+            return actualMode; // RETURN DUH
+        }
 
-            let exactDuration = getExDuration();
-            // ( ex:204 -> * 10 => 2040, ecart en ms );
-            for (i = 0; i = 100; i++) {
+        function goDark() {
+            root.style.setProperty('--background', "#111111"); // change bg
+            root.style.setProperty('--white', "#ffffff"); // change text
+            actualMode = false; // toggle booleen
+            localStorage.setItem('actualMode', actualMode); // ls.set le mode
+            return actualMode; // RETURN DUH
+        }
 
-            };
-            var i = 1; //  set your counter to 1
-            function myLoop() {
-                setTimeout(function() {
-                    console.log('hello' + i);
-                    $("#durationRange").val(i);
-                    i++;
-                    if (i < 100) {
-                        myLoop();
-                    }
-                }, exactDuration * 10)
+        window.onload = function() {
+            let retrievedMode = localStorage.getItem('actualMode');
+            console.dir(retrievedMode);
+            if (retrievedMode == "true") {
+                goLight();
+            } else if (retrievedMode == "false") {
+                goDark();
             }
-            
-            myLoop();
-
-            //Navigation dans la musique
-            $("#durationRange").mouseup(function(e) {
-                var leftOffset = e.pageX - $(this).offset().left;
-                var songPercents = leftOffset / $("#durationRange").width();
-                console.log(songPercents);
-                audio.currentTime = songPercents * audio.duration;
-                console.log(audio.currentTime);
-                return songPercents;
-            });
-        });
-    </script>
-
-    <script>
-        const albums = document.querySelectorAll('.item_album');
-        console.log(albums.length);
-
-        function display(classAlbum, classContainer) {
-            let albums = document.querySelector(classAlbum);
-            let container = document.querySelector(classContainer);
-            let state = false;
-            albums.addEventListener('click', function() {
-                if (!state) {
-                    container.style.display = 'block';
-                    state = true;
-                    return state;
-                } else if (state) {
-                    container.style.display = 'none';
-                    state = false;
-                    return state;
-                };
-            });
         };
 
-        for (i = 1; i <= albums.length; i++) {
-            display('.albumid' + i, '.songContainer' + i);
-        };
-
-        /* -------------------------------------------------------------------------- */
-        /*                                    MUSIC                                   */
-        /* -------------------------------------------------------------------------- */
-        const playButton = document.querySelector('.play');
-        const audio = document.getElementById('audioPlayer');
-        const cover = document.querySelector('#playerCover');
-        const artist = document.querySelector('.artist');
-        const album = document.querySelector('.album');
-        const song = document.querySelector('.song');
-
-        document.querySelectorAll('.item_song').forEach(item => {
-            item.addEventListener('click', (e) => {
-                audio.src = item.getAttribute('song_path');
-                cover.src = item.getAttribute('cover_path');
-                artist.innerHTML = item.getAttribute('artist_name');
-                song.innerHTML = item.getAttribute('song_name');
-                album.innerHTML = item.getAttribute('album_name');
-
-                setTimeout(function() {
-                    vibrant();
-                }, 100);
-            });
-        });
-        musicIsPlaying = false;
-
-
-        playButton.addEventListener('click', () => {
-            if (musicIsPlaying) {
-                audio.pause();
-                musicIsPlaying = false;
+        function dayNightMode() {
+            if (document.getElementById('dayNight').checked) {
+                goLight();
             } else {
-                audio.play();
-                musicIsPlaying = true;
+                goDark();
             }
-        });
+        }
 
-
-
-        display('.albumid1', '.songContainer1');
+        document.getElementById('dayNight').onclick = function() {
+            dayNightMode();
+        }
     </script>
-
-    <script src="assets/script/range.js"></script>
-    <script src="assets/Script/slider.js"></script>
     <script src="assets/script/Vibrant.js"></script>
     <script src="assets/script/main.js"></script>
 </body>

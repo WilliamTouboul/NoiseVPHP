@@ -134,7 +134,15 @@ $infos = getquery($connect, $getInfo);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.2/dist/kute.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    </script>
+    <script src="assets/script/Vibrant.js"></script>
+    <script src="assets/script/main.js"></script>
     <script>
+        document.querySelector('.param').onclick = function() {
+            window.location.href = "addForm.php"
+        }
+
         let root = document.querySelector(':root'); // raccourci pour target
         let actualMode = false; // booleen pour check le mode
 
@@ -177,8 +185,6 @@ $infos = getquery($connect, $getInfo);
             dayNightMode();
         }
     </script>
-    <script src="assets/script/Vibrant.js"></script>
-    <script src="assets/script/main.js"></script>
 </body>
 
 </html>

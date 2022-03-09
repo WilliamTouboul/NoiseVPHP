@@ -11,6 +11,8 @@
             $css = 'assets/style/index.css';
         } else if (basename($_SERVER['PHP_SELF']) == 'main.php') {
             $css = 'assets/style/style.css';
+        } else if (basename($_SERVER['PHP_SELF']) == 'addForm.php' || basename($_SERVER['PHP_SELF']) == 'addAlbum.php' || basename($_SERVER['PHP_SELF']) == 'addSong.php') {
+            $css = 'assets/style/addForm.css';
         }
         ?>
         <link rel="stylesheet" href=<?= $css ?>>

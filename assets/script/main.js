@@ -101,27 +101,30 @@ $(document).ready(function () {
         }, exactDuration * 10);
     };
 
-    // Display la bonne cover dans le 
+    // Display la bonne cover
     function display(classAlbum, classContainer) {
-        let albums = document.querySelector(classAlbum);
-        let container = document.querySelector(classContainer);
-        let state = false;
-        albums.addEventListener('click', function () {
+        let albumsToDisplay = document.querySelector(classAlbum); // Param 1
+        let containerToDisplay = document.querySelector(classContainer); // Param 2
+        let state = false; // Affiché ou pas.
+        albumsToDisplay.addEventListener('click', function () {
             if (!state) {
-                container.style.display = 'block';
-                state = true;
+                containerToDisplay.style.display = 'block';
+                state = true; //-------------------------------------- ON
                 return state;
             } else if (state) {
-                container.style.display = 'none';
-                state = false;
+                containerToDisplay.style.display = 'none';
+                state = false; //------------------------------------- OFF
                 return state;
             };
         });
     };
 
-    for (i = 1; i <= albums.length; i++) {
-        display('.albumid' + i, '.songContainer' + i);
-    };
+    let arrayAlbums = document.querySelectorAll('.item_album'); // Array avec les albums.
+    arrayAlbums.forEach(function (element) { // Foreach album dans la liste
+        let attrib = element.getAttribute('album_id'); // On prend l'id
+        display('.albumid' + attrib, '.songContainer' + attrib); // Concatenation pour cibler la bonne div.
+    });
+
 
     // Fonction musique pour lancer et remettre a 0 a la séléction.
     document.querySelectorAll('.item_song').forEach(item => {

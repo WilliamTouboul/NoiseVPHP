@@ -120,10 +120,6 @@ $(document).ready(function () {
     };
 
     let arrayAlbums = document.querySelectorAll('.item_album'); // Array avec les albums.
-    arrayAlbums.forEach(function (element) { // Foreach album dans la liste
-        let attrib = element.getAttribute('album_id'); // On prend l'id
-        display('.albumid' + attrib, '.songContainer' + attrib); // Concatenation pour cibler la bonne div.
-    });
 
 
     // Fonction musique pour lancer et remettre a 0 a la séléction.

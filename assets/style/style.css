@@ -31,20 +31,6 @@ html {
     font-size: 10px;
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                    INDEX                                   */
-/* -------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-/*                                    INDEX                                   */
-/* -------------------------------------------------------------------------- */
-
-/* -------------------------------------------------------------------------- */
-/*                                    MAIN                                    */
-/* -------------------------------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-/*                                    MAIN                                    */
-/* -------------------------------------------------------------------------- */
-
 body {
     height: 100vh;
     width: 100vw;
@@ -53,6 +39,7 @@ body {
     display: flex;
     flex-direction: row;
     background-color: var(--background);
+    transition: background-color 0.3s ease-out;
 }
 
 body .player {
@@ -265,14 +252,16 @@ body .main nav .search {
 }
 
 body .main nav .search input {
-    color: var(--white);
-    border: 1px var(--white) solid;
     border-radius: 2rem;
-    height: 2.4rem;
-    font-size: 1.6rem;
-    font-family: latoReg;
+    height: 2.6rem;
+    border: none;
     padding-left: 1rem;
-    padding-right: 1rem;
+    font-family: latoReg;
+    background: #555555;
+    color: var(--white);
+    width: 100%;
+
+
 }
 
 body .main nav .search svg {
@@ -293,7 +282,6 @@ body .main nav .button {
     top: 50%;
     width: 74px;
     height: 36px;
-    margin: 0 auto 0 auto;
     overflow: hidden;
 }
 
@@ -323,7 +311,7 @@ body .main nav .knobs {
 
 body .main nav .layer {
     width: 100%;
-    background-color: #e7e7e7;
+    background-color: #555555;
     transition: 0.3s ease all;
     z-index: 1;
 }
@@ -381,7 +369,7 @@ body .main nav #button-9 .checkbox:checked+.knobs span {
 }
 
 body .main nav #button-9 .checkbox:checked~.layer {
-    background-color: var(--white);
+    background-color: #555555;
 }
 
 body .main nav .param {
@@ -444,6 +432,7 @@ body .main .menu .top .sliders .item p {
     top: 3.5rem;
     left: -5px;
     padding: 0.4em 0.8em;
+    transition: background-color 0.2s ease-out;
 }
 
 body .main .menu .top .sliders .item_artist {
@@ -520,4 +509,8 @@ body .main .menu .top .sliders .item_artist p {
     100% {
         transform: rotate(36000deg);
     }
+}
+
+.allArtist {
+    background: rgba(0, 0, 0, 0.5)
 }

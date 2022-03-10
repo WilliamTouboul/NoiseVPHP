@@ -15,14 +15,25 @@ if (isset($_POST['buttonSubmit'])) {
 
 ?>
 
-<body>
-    <a href="addAlbum.php">ALBUM</a>
+<body class="bodyAdd">
+    <div class="form">
 
-    <form action="addForm.php" method="POST">
-        ARTIST: <input type="text" name="artist" id="artist"><br>
-        PIC: <input type="text" name="pic" id="pic"><br>
-        <input type="submit" name="buttonSubmit">
-    </form>
+        <form action="addForm.php" method="POST">
+            <h2>Ajout d'un artiste</h2>
+            <label for="artist">Nom de l'artiste : </label><input type="text" name="artist" id="artist" placeholder="Nom"><br>
+            <label for="pic">Image de l'artiste : </label><input type="text" name="pic" id="pic" placeholder="Photo"><br>
+            <input type="submit" name="buttonSubmit">
 
+        </form>
+
+        <div class="nav">
+            <a href="main.php">
+                << Retour
+            </a>
+            <a href="addAlbum.php">
+                Ajout Album >>
+            </a>
+        </div>
+    </div>
 
 </body>

@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: deserta;
+    src: url(../fonts/Deserta.otf);
+}
+
+@font-face {
+    font-family: latoReg;
+    src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: latoBold;
+    src: url(../fonts/Lato-Bold.ttf);
+}
+
+:root {
+    --highlight: #cf152d;
+    --background: #111;
+    --background_darker: #0c0c0c;
+    --grey: #d2d2d2;
+    --white: #fff;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--background);
+    background-image: url('../images/backgroundIndex.png');
+}
+
+.bodyAdd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    color: var(--white);
+    flex-direction: column;
+    font-family: deserta;
+    height: 35rem;
+    width: 28rem;
+    justify-content: space-around;
+}
+
+.form label {
+    display: none;
+}
+
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 20rem;
+}
+
+.form input[type="text"] {
+    border-radius: 2rem;
+    height: 2.6rem;
+    border: none;
+    padding-left: 1rem;
+    font-family: latoReg;
+    background: #555555;
+    color: var(--white);
+    width: 100%;
+
+}
+
+.form input[type="text"]::placeholder {
+    font-family: latoReg;
+    color: #9c9c9c;
+}
+
+.form input[type="submit"] {
+    align-self: center;
+    font-family: deserta;
+    border: none;
+    background-color: var(--highlight);
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 2rem;
+    padding: 0.8rem 3rem;
+    margin-top: 2rem;
+}
+
+.form input[type="submit"]:hover {
+    background-color: #fa3b54;
+}
+
+form h2 {
+    margin-bottom: 2rem;
+    font-size: 2.8rem;
+    color: var(--highlight)
+}
+
+.nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav a {
+    font-size: 1.8rem;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: var(--highlight)
+}
+
+.form select {
+    border-radius: 2rem;
+    height: 2.6rem;
+    border: none;
+    padding-left: 1rem;
+    font-family: latoReg;
+    background: #555555;
+    color: var(--white);
+    width: 100%;
+    margin-bottom: 2rem;
+}

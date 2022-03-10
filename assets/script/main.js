@@ -1,43 +1,41 @@
-const rangeInputs = document.querySelectorAll('input[type="range"]')
+$(document).ready(function () {
 
-// Fonction pour deplacer le background en cliquant.
-function handleInputChange(e) {
-    const min = e.target.min
-    const max = e.target.max
-    const val = e.target.value
-    let current = (val - min) * 100 / (max - min);
-    e.target.style.backgroundSize = current + '% 100%';
-}
+    const rangeInputs = document.querySelectorAll('input[type="range"]')
 
-rangeInputs.forEach(input => {
-    input.addEventListener('input', handleInputChange)
-});
+    // Fonction pour deplacer le background en cliquant.
+    function handleInputChange(e) {
+        const min = e.target.min
+        const max = e.target.max
+        const val = e.target.value
+        let current = (val - min) * 100 / (max - min);
+        e.target.style.backgroundSize = current + '% 100%';
+    }
 
-// Variable Cover + Vibrant();
-let img = document.querySelector(".player .cover");
+    rangeInputs.forEach(input => {
+        input.addEventListener('input', handleInputChange)
+    });
 
-window.addEventListener('load', vibrant());
+    // Variable Cover + Vibrant();
+    let img = document.querySelector(".player .cover");
 
-function vibrant() {
-    let vibrant = new Vibrant(img);
-    let swatches = vibrant.swatches()
+    window.addEventListener('load', vibrant());
 
-    for (var swatch in swatches) {
-        if (swatches.hasOwnProperty(swatch) && swatches[swatch]) {
-            // console.log(swatch, swatches[swatch].getHex())
-            if (swatch == 'Vibrant') {
-                // console.log(swatches[swatch].getHex());
-                document.querySelector(':root').style.setProperty('--highlight', swatches[swatch]
-                    .getHex())
+    function vibrant() {
+        let vibrant = new Vibrant(img);
+        let swatches = vibrant.swatches()
+
+        for (var swatch in swatches) {
+            if (swatches.hasOwnProperty(swatch) && swatches[swatch]) {
+                // console.log(swatch, swatches[swatch].getHex())
+                if (swatch == 'Vibrant') {
+                    // console.log(swatches[swatch].getHex());
+                    document.querySelector(':root').style.setProperty('--highlight', swatches[swatch]
+                        .getHex())
+                }
             }
         }
     }
-}
 
-
-$(document).ready(function () {
-    // Variable -------------------------------------------------
-    // ----------------------------------------------------------
     const playButton = document.querySelector('.play');
     const audio = document.getElementById('audioPlayer');
     const cover = document.querySelector('#playerCover');
@@ -101,27 +99,6 @@ $(document).ready(function () {
         }, exactDuration * 10);
     };
 
-    // Display la bonne cover
-    function display(classAlbum, classContainer) {
-        let albumsToDisplay = document.querySelector(classAlbum); // Param 1
-        let containerToDisplay = document.querySelector(classContainer); // Param 2
-        let state = false; // Affiché ou pas.
-        albumsToDisplay.addEventListener('click', function () {
-            if (!state) {
-                containerToDisplay.style.display = 'block';
-                state = true; //-------------------------------------- ON
-                return state;
-            } else if (state) {
-                containerToDisplay.style.display = 'none';
-                state = false; //------------------------------------- OFF
-                return state;
-            };
-        });
-    };
-
-    let arrayAlbums = document.querySelectorAll('.item_album'); // Array avec les albums.
-
-
     // Fonction musique pour lancer et remettre a 0 a la séléction.
     document.querySelectorAll('.item_song').forEach(item => {
         item.addEventListener('click', (e) => {
@@ -163,51 +140,107 @@ $(document).ready(function () {
 
     display('.albumid1', '.songContainer1');
 
-    /* --------------------------------- SLIDERS -------------------------------- */
-    const slider = document.querySelector('.sliders');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    /* -------------------------------------------------------------------------- */
+    /*                                  DARKMODE                                  */
+    /* -------------------------------------------------------------------------- */
+    document.querySelector('.param').onclick = function () {
+        window.location.href = "addForm.php"
+    }
 
-    document.querySelectorAll('.sliders').forEach(item => {
-        item.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-            item.style.cursor = "grabbing";
-        });
-    });
+    let root = document.querySelector(':root'); // raccourci pour target
+    let actualMode = false; // booleen pour check le mode
 
-    document.querySelectorAll('.sliders').forEach(item => {
-        item.addEventListener('mouseleave', (e) => {
-            isDown = false;
-            item.style.cursor = "grab";
-        });
-    });
+    function goLight() {
+        root.style.setProperty('--background', '#ffffff'); // change bg
+        root.style.setProperty('--white', '#000000'); // change text
+        actualMode = true; // toggle booleen
+        localStorage.setItem('actualMode', actualMode); // ls.set le mode
+        document.getElementById('dayNight').checked = true;
+        return actualMode; // RETURN DUH
+    }
 
-    document.querySelectorAll('.sliders').forEach(item => {
-        item.addEventListener('mouseup', (e) => {
-            isDown = false;
-            item.style.cursor = "grab";
-        });
-    });
+    function goDark() {
+        root.style.setProperty('--background', "#111111"); // change bg
+        root.style.setProperty('--white', "#ffffff"); // change text
+        actualMode = false; // toggle booleen
+        localStorage.setItem('actualMode', actualMode); // ls.set le mode
+        return actualMode; // RETURN DUH
+    }
 
-    document.querySelectorAll('.sliders').forEach(item => {
-        item.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 1.8;
-            item.scrollLeft = scrollLeft - walk;
-            item.style.cursor = "grab";
-        });
-    });
-
-    const mouseMoveHandler = function (e) {
-        const dx = e.clientX - pos.x;
-        const dy = e.clientY - pos.y;
-
-        ele.scrollTop = pos.top - dy;
-        ele.scrollLeft = pos.left - dx;
+    window.onload = function () {
+        let retrievedMode = localStorage.getItem('actualMode');
+        console.dir(retrievedMode);
+        if (retrievedMode == "true") {
+            goLight();
+        } else if (retrievedMode == "false") {
+            goDark();
+        }
     };
+
+    function dayNightMode() {
+        if (document.getElementById('dayNight').checked) {
+            goLight();
+        } else {
+            goDark();
+        }
+    }
+
+    document.getElementById('dayNight').onclick = function () {
+        dayNightMode();
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                            DISPLAY ARTISTE ALBUM                           */
+    /* -------------------------------------------------------------------------- */
+
+
+    // Display la bonne cover
+    function display(classAlbum, classContainer) {
+        let albumsToDisplay = document.querySelector(classAlbum); // Param 1
+        let containerToDisplay = document.querySelector(classContainer); // Param 2
+        let state = false; // Affiché ou pas.
+        albumsToDisplay.addEventListener('click', function () {
+            if (!state) {
+                containerToDisplay.style.display = 'block';
+                state = true; //-------------------------------------- ON
+                return state;
+            } else if (state) {
+                containerToDisplay.style.display = 'none';
+                state = false; //------------------------------------- OFF
+                return state;
+            };
+        });
+    };
+
+    // Array Display song from Albums
+    let arrayAlbums = document.querySelectorAll('.item_album'); // Array avec les albums.
+    arrayAlbums.forEach(function (element) { // Foreach album dans la liste
+        let attrib = element.getAttribute('album_id'); // On prend l'id
+        display('.albumid' + attrib, '.songContainer' + attrib); // Concatenation pour cibler la bonne div.
+    });
+
+
+
+    let artistArray = document.querySelectorAll('.item_artist_not_all');
+    let albumArray = document.querySelectorAll('.item_album');
+    let allArtist = document.querySelector('.allArtist');
+
+    function displayArtistPerAlbum(argAttrib) {
+        albumArray.forEach(function (element) {
+            element.style.display = "none";
+            if (element.getAttribute('id_artist') == argAttrib) {
+                element.style.display = "block";
+            }
+        });
+    }
+    artistArray.forEach(function (element) {
+        let attrib = element.getAttribute('id_artist');
+        element.addEventListener('click', function () {
+            displayArtistPerAlbum(attrib);
+        })
+    });
+
+    allArtist.addEventListener('click', function () {
+        albumArray.forEach(element => element.style.display = "block")
+    });
 });

@@ -17,21 +17,32 @@ if (isset($_POST['buttonSubmit'])) {
 
 ?>
 
-<body>
-    <a href="addSong.php">song</a>
+<body class="bodyAdd">
+    <div class="form">
+        <a href="addSong.php">song</a>
 
-    <form action="addAlbum.php" method="POST">
-        <select class="form-control" name="artist" id="artist">
-            <?php
-            foreach ($artists as $item) {
-                echo '<option value=' . $item['id'] . '>' . $item['artistName'] . '</option>';
-            }
-            ?>
-        </select>
-        ALBUM: <input type="text" name="album" id="album"><br>
-        COVER: <input type="text" name="cover" id="cover"><br>
-        <input type="submit" name="buttonSubmit">
-    </form>
+        <form action="addAlbum.php" method="POST">
+            <select class="form-control" name="artist" id="artist">
+                <?php
+                foreach ($artists as $item) {
+                    echo '<option value=' . $item['id'] . '>' . $item['artistName'] . '</option>';
+                }
+                ?>
+            </select>
+            <input type="text" name="album" id="album" placeholder="Nom de l'album" ><br>
+            <input type="text" name="cover" id="cover" placeholder="Couverture" ><br>
+            <input type="submit" name="buttonSubmit">
+        </form>
+
+
+        <div class="nav">
+            <a href="main.php">
+                << Retour </a>
+                    <a href="addSong.php">
+                        Ajout Musique >>
+                    </a>
+        </div>
+    </div>
 
 
 </body>

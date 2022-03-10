@@ -16,19 +16,26 @@ if (isset($_POST['buttonSubmit'])) {
 }
 ?>
 
-<body>
-    <form action="addSong.php" method="POST">
-        <select class="form-control" name="album" id="album">
-            <?php
-            foreach ($albums as $item) {
-                echo '<option value=' . $item['id'] . '>' . $item['album_name'] . '</option>';
-            }
-            ?>
-        </select>
-        SONG <input type="text" name="song" id="song"><br>
-        path: <input type="text" name="path" id="path"><br>
-        <input type="submit" name="buttonSubmit">
-    </form>
+<body class="bodyAdd">
+    <div class="form">
+        <form action="addSong.php" method="POST">
+            <select class="form-control" name="album" id="album">
+                <?php
+                foreach ($albums as $item) {
+                    echo '<option value=' . $item['id'] . '>' . $item['album_name'] . '</option>';
+                }
+                ?>
+            </select>
+            <input type="text" name="song" id="song" placeholder="Nom de la musique"><br>
+            <input type="text" name="path" id="path" placeholder="Musique"><br>
+            <input type="submit" name="buttonSubmit">
+        </form>
+
+        <div class="nav">
+            <a href="main.php">
+                << Retour </a>
+        </div>
+    </div>
 
 
 </body>

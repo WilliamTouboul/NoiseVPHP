@@ -65,13 +65,10 @@ $infos = getquery($connect, $getInfo);
 
                 <div class="search">
                     <input type="text" placeholder="Recherche...">
-                    <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M28 28L21.6252 21.6138L28 28ZM25.1579 13.0789C25.1579 16.2825 23.8853 19.3548 21.6201 21.6201C19.3548 23.8853 16.2825 25.1579 13.0789 25.1579C9.87541 25.1579 6.80308 23.8853 4.53784 21.6201C2.2726 19.3548 1 16.2825 1 13.0789C1 9.87541 2.2726 6.80308 4.53784 4.53784C6.80308 2.2726 9.87541 1 13.0789 1C16.2825 1 19.3548 2.2726 21.6201 4.53784C23.8853 6.80308 25.1579 9.87541 25.1579 13.0789V13.0789Z" stroke="white" stroke-width="2" stroke-linecap="round" />
-                    </svg>
                 </div>
 
-                <svg class="param" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M17 10.645v-2.29c-1.17-.417-1.907-.533-2.28-1.431-.373-.9.07-1.512.6-2.625l-1.618-1.619c-1.105.525-1.723.974-2.626.6-.9-.373-1.017-1.116-1.431-2.28h-2.29c-.412 1.158-.53 1.907-1.431 2.28h-.001c-.9.374-1.51-.07-2.625-.6l-1.617 1.619c.527 1.11.973 1.724.6 2.625-.375.901-1.123 1.019-2.281 1.431v2.289c1.155.412 1.907.531 2.28 1.431.376.908-.081 1.534-.6 2.625l1.618 1.619c1.107-.525 1.724-.974 2.625-.6h.001c.9.373 1.018 1.118 1.431 2.28h2.289c.412-1.158.53-1.905 1.437-2.282h.001c.894-.372 1.501.071 2.619.602l1.618-1.619c-.525-1.107-.974-1.723-.601-2.625.374-.899 1.126-1.019 2.282-1.43zm-8.5 1.689c-1.564 0-2.833-1.269-2.833-2.834s1.269-2.834 2.833-2.834 2.833 1.269 2.833 2.834-1.269 2.834-2.833 2.834zm15.5 4.205v-1.077c-.55-.196-.897-.251-1.073-.673-.176-.424.033-.711.282-1.236l-.762-.762c-.52.248-.811.458-1.235.283-.424-.175-.479-.525-.674-1.073h-1.076c-.194.545-.25.897-.674 1.073-.424.176-.711-.033-1.235-.283l-.762.762c.248.523.458.812.282 1.236-.176.424-.528.479-1.073.673v1.077c.544.193.897.25 1.073.673.177.427-.038.722-.282 1.236l.762.762c.521-.248.812-.458 1.235-.283.424.175.479.526.674 1.073h1.076c.194-.545.25-.897.676-1.074h.001c.421-.175.706.034 1.232.284l.762-.762c-.247-.521-.458-.812-.282-1.235s.529-.481 1.073-.674zm-4 .794c-.736 0-1.333-.597-1.333-1.333s.597-1.333 1.333-1.333 1.333.597 1.333 1.333-.597 1.333-1.333 1.333zm-4 3.071v-.808c-.412-.147-.673-.188-.805-.505s.024-.533.212-.927l-.572-.571c-.389.186-.607.344-.926.212s-.359-.394-.506-.805h-.807c-.146.409-.188.673-.506.805-.317.132-.533-.024-.926-.212l-.572.571c.187.393.344.609.212.927-.132.318-.396.359-.805.505v.808c.408.145.673.188.805.505.133.32-.028.542-.212.927l.572.571c.39-.186.608-.344.926-.212.318.132.359.395.506.805h.807c.146-.409.188-.673.507-.805h.001c.315-.131.529.025.924.213l.572-.571c-.186-.391-.344-.609-.212-.927s.397-.361.805-.506zm-3 .596c-.552 0-1-.447-1-1s.448-1 1-1 1 .447 1 1-.448 1-1 1z" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="param" viewBox="0 0 448 512">
+                    <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z" />
                 </svg>
 
             </div>
@@ -115,9 +112,12 @@ $infos = getquery($connect, $getInfo);
                 <!-- SLIDERS 2 -->
                 <h2 class="artist_title">Artistes :</h2>
                 <div class="sliders sliders_artist">
+                    <div class="item_artist allArtist">
+                        <p>ALL</p>
+                    </div>
                     <?php
                     foreach ($artists as $item) {
-                        echo ' <div class="item_artist" id_artist="' . $item['id'] . '" style="background-image:url(\'' . $item['pic'] . '\')">
+                        echo ' <div class="item_artist item_artist_not_all" id_artist="' . $item['id'] . '" style="background-image:url(\'' . $item['pic'] . '\')">
                         <p>' . $item['artistName'] . '</p>
                     </div>';
                     }
@@ -132,59 +132,11 @@ $infos = getquery($connect, $getInfo);
         <source src="assets/music/sounds/Advice/Advice.mp3" type="audio/mpeg">
     </audio>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.2/dist/kute.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    </script>
     <script src="assets/script/Vibrant.js"></script>
     <script src="assets/script/main.js"></script>
-    <script>
-        document.querySelector('.param').onclick = function() {
-            window.location.href = "addForm.php"
-        }
+    <script src="assets/script/slider.js"></script>
 
-        let root = document.querySelector(':root'); // raccourci pour target
-        let actualMode = false; // booleen pour check le mode
-
-        function goLight() {
-            root.style.setProperty('--background', '#ffffff'); // change bg
-            root.style.setProperty('--white', '#000000'); // change text
-            actualMode = true; // toggle booleen
-            localStorage.setItem('actualMode', actualMode); // ls.set le mode
-            document.getElementById('dayNight').checked = true;
-            return actualMode; // RETURN DUH
-        }
-
-        function goDark() {
-            root.style.setProperty('--background', "#111111"); // change bg
-            root.style.setProperty('--white', "#ffffff"); // change text
-            actualMode = false; // toggle booleen
-            localStorage.setItem('actualMode', actualMode); // ls.set le mode
-            return actualMode; // RETURN DUH
-        }
-
-        window.onload = function() {
-            let retrievedMode = localStorage.getItem('actualMode');
-            console.dir(retrievedMode);
-            if (retrievedMode == "true") {
-                goLight();
-            } else if (retrievedMode == "false") {
-                goDark();
-            }
-        };
-
-        function dayNightMode() {
-            if (document.getElementById('dayNight').checked) {
-                goLight();
-            } else {
-                goDark();
-            }
-        }
-
-        document.getElementById('dayNight').onclick = function() {
-            dayNightMode();
-        }
-    </script>
 </body>
 
 </html>

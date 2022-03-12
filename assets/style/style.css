@@ -31,6 +31,7 @@ html {
     font-size: 10px;
 }
 
+
 body {
     height: 100vh;
     width: 100vw;
@@ -429,7 +430,7 @@ body .main .menu .top .sliders .item p {
     color: var(--highlight);
     background: var(--background);
     position: absolute;
-    top: 3.5rem;
+    bottom: 3.5rem;
     left: -5px;
     padding: 0.4em 0.8em;
     transition: background-color 0.2s ease-out;

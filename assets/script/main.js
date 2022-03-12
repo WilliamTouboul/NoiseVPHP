@@ -15,6 +15,8 @@ $(document).ready(function () {
         input.addEventListener('input', handleInputChange)
     });
 
+
+
     // Variable Cover + Vibrant();
     let img = document.querySelector(".player .cover");
 
@@ -55,10 +57,16 @@ $(document).ready(function () {
         return rounded;
     };
 
+    $('#soundControl').mouseup(function (e) {
+        audio.volume = (this.value) / 100;
+        console.log(audio.volume)
+    });
+
+
     let exactDuration = getExDuration(); // Durée en s de la musique. *10 pour délai ms
 
     //Navigation dans la musique
-    inputed = $("#durationRange").mouseup(function (e) {
+    inputed = $("#durationRange").mouseup(function () {
         var leftOffset = e.pageX - $(this).offset().left;
         var songPercents = leftOffset / $("#durationRange").width();
         audio.currentTime = songPercents * audio.duration;
@@ -118,6 +126,9 @@ $(document).ready(function () {
             setTimeout(function () {
                 vibrant();
             }, 100);
+            if (screen.width < 800) {
+                toggleMenu();
+            }
             return musicIsPlaying;
         });
     });
@@ -197,15 +208,30 @@ $(document).ready(function () {
     // Display la bonne cover
     function display(classAlbum, classContainer) {
         let albumsToDisplay = document.querySelector(classAlbum); // Param 1
+        let albumsToDisP = document.querySelector(classAlbum + " p")
         let containerToDisplay = document.querySelector(classContainer); // Param 2
         let state = false; // Affiché ou pas.
         albumsToDisplay.addEventListener('click', function () {
             if (!state) {
                 containerToDisplay.style.display = 'block';
+                if (screen.width < 800) {
+                    albumsToDisplay.style.height = "8rem";
+                    albumsToDisplay.style.width = "8rem";
+                    albumsToDisplay.style.minWidth = "8rem";
+                    albumsToDisP.style.fontSize = "1rem"
+                    albumsToDisplay.getBoundingClientRect().left = "0";
+                }
                 state = true; //-------------------------------------- ON
                 return state;
             } else if (state) {
                 containerToDisplay.style.display = 'none';
+                if (screen.width < 800) {
+                    albumsToDisplay.style.height = "22rem";
+                    albumsToDisplay.style.width = "22rem";
+                    albumsToDisplay.style.minWidth = "22rem";
+                    albumsToDisP.style.fontSize = "1.6rem"
+
+                }
                 state = false; //------------------------------------- OFF
                 return state;
             };

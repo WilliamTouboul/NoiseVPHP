@@ -254,7 +254,7 @@ body .main nav .search {
 
 body .main nav .search input {
     border-radius: 2rem;
-    height: 2.6rem;
+    height: 3.6rem;
     border: none;
     padding-left: 1rem;
     font-family: latoReg;
@@ -422,6 +422,7 @@ body .main .menu .top .sliders .item {
     background-size: cover;
     cursor: pointer !important;
     position: relative;
+    transition: all 0.3s ease-out;
 }
 
 body .main .menu .top .sliders .item p {

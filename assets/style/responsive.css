@@ -6,6 +6,11 @@
         position: relative;
     }
 
+    html {
+        font-size: 8px;
+
+    }
+
     body .player {
         width: 100%;
         height: 100vh;
@@ -20,6 +25,14 @@
         width: 100%;
     }
 
+    body .main nav .search {
+        display: none;
+    }
+
+    body .main nav h1 {
+        font-size: 2.6rem;
+    }
+
     .toggleMobile {
         height: 50px;
         width: 50px;
@@ -28,5 +41,21 @@
         bottom: 15px;
         right: 15px;
         z-index: 5000;
+    }
+
+    body .main .menu .top .sliders .item p {
+        font-family: latoBold;
+    }
+
+    .songContainer .item_song {
+        width: 33rem;
+    }
+
+    body .main .menu .top .artist_title {
+        margin-top: 20rem;
+    }
+
+    body .main .menu .top h2 {
+        margin-top: 3rem;
     }
 }

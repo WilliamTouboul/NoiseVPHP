@@ -17,6 +17,6 @@
         ?>
         <link rel="stylesheet" href=<?= $css ?>>
         <link rel="stylesheet" href="assets/style/responsive.css">
-        <link rel="icon" type="image/png" href="assets/images/svg/N-ico.svg" />
+        <link rel="icon" type="image/png" href="assets/images/svg/NFavLogo.png" />
 
     </head>

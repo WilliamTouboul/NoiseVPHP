@@ -34,13 +34,21 @@
     }
 
     .toggleMobile {
+        display: block;
+        transition: all 0.3s ease-out;
         height: 50px;
         width: 50px;
-        background-color: var(--highlight);
         position: absolute;
         bottom: 15px;
         right: 15px;
         z-index: 5000;
+        color: var(--highlight);
+    }
+
+    .toggleMobile * {
+        transition: all 0.3s ease-out;
+        color: var(--highlight);
+
     }
 
     body .main .menu .top .sliders .item p {

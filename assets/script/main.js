@@ -66,7 +66,7 @@ $(document).ready(function () {
     let exactDuration = getExDuration(); // Durée en s de la musique. *10 pour délai ms
 
     //Navigation dans la musique
-    inputed = $("#durationRange").mouseup(function () {
+    inputed = $("#durationRange").mouseup(function (e) {
         var leftOffset = e.pageX - $(this).offset().left;
         var songPercents = leftOffset / $("#durationRange").width();
         audio.currentTime = songPercents * audio.duration;
@@ -139,12 +139,19 @@ $(document).ready(function () {
             audio.pause();
             musicIsPlaying = false;
             playButton.src = "assets/images/svg/Play.svg";
+            var tween = KUTE.to('#svgPlay', {
+                path: '#svgPlayB'
+            }).start();
             return musicIsPlaying;
         } else {
             myLoop();
             audio.play();
             playButton.src = "assets/images/svg/group 9.svg";
             musicIsPlaying = true;
+            var tween = KUTE.to('#svgPlay', {
+                path: '#svgRect'
+            }).start();
+
             return musicIsPlaying;
         }
     });
